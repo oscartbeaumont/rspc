@@ -4,6 +4,7 @@ use specta::Type;
 // TODO: Should have `ArgumentMapperAdvanced` w/ `type = Output` for chaining these
 
 /// TODO
+#[deprecated]
 pub trait ArgumentMapper: Send + Sync + 'static {
     /// TODO
     type State: Send + Sync + 'static;
@@ -20,6 +21,7 @@ pub trait ArgumentMapper: Send + Sync + 'static {
 }
 
 /// TODO
+#[deprecated]
 pub enum ArgumentMapperPassthrough {}
 
 impl ArgumentMapper for ArgumentMapperPassthrough {

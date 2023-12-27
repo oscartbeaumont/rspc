@@ -1,29 +1,48 @@
 [package]
 name = "rspc-core"
-version = "1.0.0-rc.5"
+version = "0.0.1"
 edition = "2021"
-
-# TODO: Remove all features from this crate cause they mean we can optimise build time
-[features]
-default = []
-typescript = ["specta/typescript"]
-tracing = ["dep:tracing"]
-unstable = []
+publish = false # TODO
 
 [dependencies]
-specta = { workspace = true, features = ["typescript"] }                                      # TODO: `typescript` should be required
-serde = { workspace = true }
-thiserror = { workspace = true }
-futures = { version = "0.3.28", default-features = false, features = ["std", "async-await"] } # TODO: Drop for `futures_core` if possible
-pin-project-lite = "0.2.13"
-serde_json = { version = "1", default-features = false }
-streamunordered = "0.5.3"
+# Public API
+futures-core = "0.3"
+serde = "1"
 
-# TODO: Remove these from core
-tracing = { version = "0.1.40", default-features = false, optional = true }
+# Private API
+erased-serde = "0.4.1"
 
-# TODO: Make something like this work
-# # Even though this `cfg` can never be enabled, it still forces cargo to keep `rspc-core` in lockstep with `rspc-*`.
-# [target.'cfg(any())'.dependencies]
-# rspc-httpz = { version = "=1.0.0-rc.5", path = "../httpz" }
-# rspc-tauri = { version = "=1.0.0-rc.5", path = "../tauri" }
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"                               # TODO: Remove this
+futures = "0.3"
+
+
+# # TODO: Remove all features from this crate cause they mean we can optimise build time
+# [features]
+# default = []
+# typescript = ["specta/typescript"]
+# tracing = ["dep:tracing"]
+# unstable = []
+
+# [dependencies]
+# rspc-core2 = { path = "../core2" }
+
+# # TODO: Drop the `specta` dependency
+
+# specta = { workspace = true, features = ["typescript"] }                                      # TODO: `typescript` should be required
+# serde = { workspace = true }
+# thiserror = { workspace = true }
+# futures = { version = "0.3.28", default-features = false, features = ["std", "async-await"] } # TODO: Drop for `futures_core` if possible
+# pin-project-lite = "0.2.13"
+# serde_json = { version = "1", default-features = false }
+# streamunordered = "0.5.3"
+
+# # TODO: Remove these from core
+# tracing = { version = "0.1.40", default-features = false, optional = true }
+
+# # TODO: Make something like this work
+# # # Even though this `cfg` can never be enabled, it still forces cargo to keep `rspc-core` in lockstep with `rspc-*`.
+# # [target.'cfg(any())'.dependencies]
+# # rspc-httpz = { version = "=1.0.0-rc.5", path = "../httpz" }
+# # rspc-tauri = { version = "=1.0.0-rc.5", path = "../tauri" }

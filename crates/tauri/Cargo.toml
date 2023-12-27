@@ -4,10 +4,12 @@ version = "1.0.0-rc.5"
 edition = "2021"
 
 [dependencies] # TODO: Typescript support should be optional
+rspc-core = { version = "0.0.1", path = "../core", default-features = false, features = [] }
 futures = "0.3.28"
-rspc-core = { version = "1.0.0-rc.5", path = "../core", default-features = false, features = ["typescript"] } # TODO: Avoid typescript features
 serde = { workspace = true, features = ["derive"] }
 serde_json = "1.0.107"
-tauri = { version = "1.5.2", default-features = false, features = ["wry"] }                                   # TODO: Work without wry
-tauri-specta = { version = "=2.0.0-rc.3", default-features = false, features = ["typescript"] }
+tauri = { version = "1.5.2", default-features = false, features = ["wry"] }                  # TODO: Work without wry
+
+# TODO: Remove these
+tauri-specta = { version = "=2.0.0-rc.4", default-features = false, features = ["typescript"] }
 specta = { workspace = true }

@@ -1,4 +1,4 @@
-use rspc_core::internal::BuildErrorCause;
+use crate::router_builder2::BuildErrorCause;
 
 pub(crate) fn is_valid_name(name: &str) -> Option<BuildErrorCause> {
     if name.is_empty() || name.len() > 255 {

@@ -4,8 +4,7 @@ mod private {
     use serde::de::DeserializeOwned;
     use specta::Type;
 
-    use crate::internal::middleware::SealedMiddlewareBuilder;
-    use rspc_core::internal::Layer;
+    use crate::{internal::middleware::SealedMiddlewareBuilder, layer::Layer};
 
     pub struct BaseMiddleware<TCtx>(PhantomData<TCtx>);
 

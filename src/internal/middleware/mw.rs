@@ -1,6 +1,6 @@
 use std::future::Future;
 
-use rspc_core::internal::{MiddlewareContext, MwV2Result};
+use crate::middleware_from_core::{MiddlewareContext, MwV2Result};
 
 use super::ArgumentMapper;
 

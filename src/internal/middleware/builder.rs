@@ -4,14 +4,16 @@ use serde::de::DeserializeOwned;
 use specta::Type;
 
 use crate::internal::middleware::Middleware;
-use rspc_core::internal::Layer;
 
 // TODO: Can this be made completely internal?
 #[doc(hidden)]
 pub trait MiddlewareBuilder: private::SealedMiddlewareBuilder + Sync {}
 
 mod private {
-    use crate::internal::middleware::{ArgumentMapper, MiddlewareLayer};
+    use crate::{
+        internal::middleware::{ArgumentMapper, MiddlewareLayer},
+        layer::Layer,
+    };
 
     use super::*;
 

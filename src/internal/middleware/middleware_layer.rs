@@ -11,13 +11,14 @@ mod private {
     use serde_json::Value;
     use specta::{ts, TypeMap};
 
-    use crate::internal::middleware::Middleware;
-    use rspc_core::{
+    use crate::{
+        body::Body,
         error::ExecError,
-        internal::{
-            new_mw_ctx, Body, Executable2, Layer, MwV2Result, PinnedOption, PinnedOptionProj,
-            ProcedureDef, RequestContext,
-        },
+        internal::middleware::Middleware,
+        layer::Layer,
+        middleware_from_core::{new_mw_ctx, Executable2, MwV2Result, RequestContext},
+        procedure_store::ProcedureDef,
+        util::{PinnedOption, PinnedOptionProj},
     };
 
     #[doc(hidden)]

@@ -14,11 +14,6 @@ use serde_json::Value;
 #[cfg(feature = "tracing")]
 type Inner = tracing::Span;
 
-use rspc_core::{
-    error::ExecError,
-    internal::{Body, IntoResolverError},
-};
-
 #[cfg(not(feature = "tracing"))]
 type Inner = ();
 
@@ -27,6 +22,11 @@ pub(crate) use private::*;
 
 pub(crate) mod private {
     use pin_project_lite::pin_project;
+
+    use crate::{
+        body::Body,
+        error::{private::IntoResolverError, ExecError},
+    };
 
     use super::*;
 

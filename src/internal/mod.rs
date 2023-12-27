@@ -3,6 +3,8 @@
 //! WARNING: Anything in this module or submodules does not follow semantic versioning as it's considered an implementation detail.
 //!
 
+pub(crate) mod build;
+
 pub mod middleware;
 pub mod procedure;
 pub mod procedure_store;

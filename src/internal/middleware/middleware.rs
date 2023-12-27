@@ -1,8 +1,8 @@
 use std::{future::Future, marker::PhantomData};
 
-use super::{arg_mapper::ArgumentMapper, ArgumentMapperPassthrough, Middleware};
+use crate::middleware_from_core::{new_mw_ctx, MiddlewareContext, MwV2Result};
 
-use rspc_core::internal::{new_mw_ctx, MiddlewareContext, MwV2Result};
+use super::{arg_mapper::ArgumentMapper, ArgumentMapperPassthrough, Middleware};
 
 // TODO: These types need to move out of the `internal` module
 

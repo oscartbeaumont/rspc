@@ -2,13 +2,11 @@ use std::{borrow::Cow, marker::PhantomData};
 
 use serde::{de::DeserializeOwned, Serialize};
 use serde_json::Value;
-use specta::{reference::Reference, ts, DataType, DefOpts, Type, TypeMap};
-
-use rspc_core::internal::{IntoResolverError, Layer, ProcedureDef, ProcedureKind, RequestContext};
+use specta::{reference::Reference, ts, DataType, Type, TypeMap};
 
 use crate::{
     internal::resolver::{result::private::StreamToBody, IntoResolverResponse},
-    ExecError,
+    middleware_from_core::ProcedureKind,
 };
 
 pub struct QueryOrMutation<M>(PhantomData<M>);
@@ -25,6 +23,13 @@ pub struct HasResolver<F, TErr, TResultMarker, M> {
 }
 
 mod private {
+    use crate::{
+        error::{private::IntoResolverError, ExecError},
+        layer::Layer,
+        middleware_from_core::RequestContext,
+        procedure_store::ProcedureDef,
+    };
+
     use super::*;
 
     impl<F, TErr, TResultMarker, M> HasResolver<F, TErr, TResultMarker, M> {
@@ -93,11 +98,5 @@ mod private {
 pub(crate) use private::M;
 
 fn never() -> DataType {
-    std::convert::Infallible::inline(
-        DefOpts {
-            parent_inline: false,
-            type_map: &mut Default::default(),
-        },
-        &[],
-    )
+    std::convert::Infallible::inline(&mut Default::default(), &[])
 }

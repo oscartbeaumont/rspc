@@ -1,10 +1,13 @@
 use std::marker::PhantomData;
 
-use crate::internal::{
-    middleware::{MiddlewareBuilder, MiddlewareLayerBuilder},
-    resolver::{HasResolver, QueryOrMutation, Subscription},
+use crate::{
+    internal::{
+        middleware::{MiddlewareBuilder, MiddlewareLayerBuilder},
+        resolver::{HasResolver, QueryOrMutation, Subscription},
+    },
+    layer::Layer,
+    middleware_from_core::ProcedureKind,
 };
-use rspc_core::internal::{Layer, ProcedureKind};
 
 /// TODO: Explain
 pub struct MissingResolver<TError>(PhantomData<TError>);
@@ -51,10 +54,7 @@ macro_rules! resolvers {
         	let $this = self;
 
             let resolver = HasResolver::new(resolver, ProcedureKind::$kind, |type_map| <<$mw_ty as crate::internal::middleware::SealedMiddlewareBuilder>::Arg<TArg> as specta::Type>::reference(
-                specta::DefOpts {
-                    parent_inline: false,
-                    type_map,
-                },
+                type_map,
                 &[],
             ));
 

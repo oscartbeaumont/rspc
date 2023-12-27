@@ -1,0 +1,18 @@
+[package]
+name = "rspc-core2"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+# Public API
+futures-core = "0.3"
+serde = "1"
+
+# Private API
+erased-serde = "0.4.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"                               # TODO: Remove this
+futures = "0.3"

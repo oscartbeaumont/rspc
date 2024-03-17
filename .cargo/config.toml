@@ -1,2 +1,0 @@
-[alias]
-test-ws = "test --all --exclude create-rspc-app --all-features"
